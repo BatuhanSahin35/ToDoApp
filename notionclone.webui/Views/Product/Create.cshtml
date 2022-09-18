@@ -1,0 +1,29 @@
+@model Product
+<form  method="POST">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input asp-for="Name" value="@Model.Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span> 
+    </div>
+    <div class="form-group">
+        <label for="Author">Author</label>
+        <input asp-for="Author" value="@Model.Author" class="form-control">
+        <span asp-validation-for="Author" class="text-danger"></span> 
+    </div>
+    <div class="form-group">
+        <label for="Evaluation">Evaluation</label>
+        <input asp-for="Evaluation" value="@Model.Evaluation" class="form-control">
+        <span asp-validation-for="Evaluation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="ImageUrl">Image</label>
+        <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control">
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="TemplateId">TemplateId</label>
+        <input asp-for="TemplateId" class="form-control">
+        <span asp-validation-for="TemplateId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>

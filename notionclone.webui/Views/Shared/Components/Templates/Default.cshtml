@@ -1,0 +1,11 @@
+@model List<Template>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a asp-controller="@item.Description" asp-action="List" asp-route-id="@item.TemplateId" 
+        class="list-group-item list-group-item-action @(ViewBag.SelectedTemplate==item.TemplateId.ToString()?"active":"")">
+        @item.Name
+        </a>
+    }
+    <a href="#" class="btn btn-success" style="margin-top: 40px;">Add Template</a>
+</div>
