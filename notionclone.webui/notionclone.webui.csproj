@@ -1,8 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <ItemGroup>
+    <ProjectReference Include="..\notionclone.data\notionclone.data.csproj" />
+    <ProjectReference Include="..\notionclone.entity\notionclone.entity.csproj" />
+    <ProjectReference Include="..\notionclone.business\notionclone.business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
+  </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>netcoreapp6.0</TargetFramework>
   </PropertyGroup>
 
+  
 </Project>

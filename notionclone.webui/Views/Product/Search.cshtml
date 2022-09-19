@@ -1,0 +1,41 @@
+@model ProductListViewModel
+
+
+@section Templates{
+    @await Component.InvokeAsync("Templates")
+}
+
+@if(Model.Products.Count==0){
+    @await Html.PartialAsync("_noproduct")
+}
+else{
+    @* category seçimine göre farklı layout ekranı getir *@
+
+    <div class="">
+
+            <div class="row" >
+                <ul style="none">
+                    <li>
+                        <a href="/product/create" class="btn btn-primary ">Add New Book</a>
+                    </li>
+                    <li>
+                        <partial name="_search" ></partial>
+                    </li>
+                </ul>
+                
+                
+            </div>
+            @foreach (var item in Model.Products){
+                <div class="col-md-12">
+                        @await Html.PartialAsync("_product", item)
+                </div>
+            }
+    </div>
+}  
+
+
+
+@section Scripts{
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+}

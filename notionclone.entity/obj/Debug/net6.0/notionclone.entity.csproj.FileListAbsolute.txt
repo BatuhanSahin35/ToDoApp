@@ -1,0 +1,12 @@
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\bin\Debug\net6.0\notionclone.entity.deps.json
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\bin\Debug\net6.0\notionclone.entity.dll
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\bin\Debug\net6.0\notionclone.entity.pdb
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.csproj.AssemblyReference.cache
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.AssemblyInfoInputs.cache
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.AssemblyInfo.cs
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.csproj.CoreCompileInputs.cache
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.dll
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\refint\notionclone.entity.dll
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\notionclone.entity.pdb
+C:\Users\batuh\Desktop\NotionClone\notionclone.entity\obj\Debug\net6.0\ref\notionclone.entity.dll

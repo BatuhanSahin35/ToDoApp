@@ -1,4 +1,4 @@
-@model Product
+@model notionclone.webui.Models.ProductModel
 <form  method="POST">
     <input type="hidden" name="ProductId" value="@Model.ProductId">
     <div class="form-group">
@@ -17,9 +17,9 @@
         <label for="ImageUrl">Image</label>
         <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control">
     </div>
-    <div class="form-group">
+    @* <div class="form-group">
         <label for="TemplateId">TemplateId</label>
         <input asp-for="TemplateId" class="form-control">
-    </div>
+    </div> *@
     <button type="submit" class="btn btn-success">Submit</button>
 </form>

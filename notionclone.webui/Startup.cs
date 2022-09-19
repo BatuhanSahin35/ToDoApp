@@ -9,6 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System.IO;
+using notionclone.data.Abstract;
+using notionclone.data.Concrete.EfCore;
+using notionclone.business.Abstract;
+using notionclone.business.Concrete;
 
 namespace notionclone.webui
 {
@@ -18,6 +22,11 @@ namespace notionclone.webui
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITemplateRepository, SQLTemplateRepository>();
+            services.AddScoped<ITemplateService, TemplateManager>();
+            
+            services.AddScoped<IProductRepository, SQLProductRepository>();
+            services.AddScoped<IProductService, ProductManager>();
             services.AddControllersWithViews();
         }
 
@@ -32,6 +41,7 @@ namespace notionclone.webui
             });
             if (env.IsDevelopment())
             {
+                SeedDatabase.Seed();
                 app.UseDeveloperExceptionPage();
             }
 
@@ -40,8 +50,23 @@ namespace notionclone.webui
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "product",
+                    pattern: "product/edit/{id?}",
+                    defaults: new { controller = "Product", action = "Edit" }
+                );
+                
+
+                endpoints.MapControllerRoute(
+                    name: "search",
+                    pattern: "search",
+                    defaults: new { controller = "Product", action = "Search" }
+                );
+                
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    );
             });
         }
     }

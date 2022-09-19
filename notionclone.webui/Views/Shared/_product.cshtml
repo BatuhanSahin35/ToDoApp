@@ -1,40 +1,41 @@
 @model Product
+    
 <div class="card mb-3" >
   <div class="row g-0">
-    <div class="col-md-2">
-      <img src="~/img/@Model.ImageUrl" class="img-fluid rounded-start" alt="" style="object-fit:cover; width:100px; height:150px;">
+    <div class="col-md-1 p-0">
+      <img src="~/img/@Model.ImageUrl" class="img-fluid rounded-start" alt="" style="object-fit:cover; width: 100px;px; height:150px;">
     </div>
-    <div class="col-md-9">
-        <div class="card-body">
-            <div class="container" >
+    <div class="col-md-11 ml-0 p-0">
+        <div class="card-body pl-5">
+            <div class="container p-0" >
                 <ul class="navbar-nav mr-auto">
                     <div class="row">
-                        <div class="col-md-2" style="">
-                            <h5>Name</h5>
+                        <div class="col-md-2 p-0" style="font-size:14px">
+                            <h5 >Name</h5>
                             <hr>
                             <p>@Model.Name</p>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 p-0" style="font-size:14px">
                             <h5>Author</h5>
                             <hr>
                             <p>@Model.Author</h5>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 p-0" style="font-size:14px">
                             <h5>Evaluation</h5>
                             <hr>
                             <p>@Model.Evaluation</h5>
                         </div>
-                        <div class="col-md-2">
-                            <hr>
-                            <hr>
+                         <div class="col-md-2 p-0" style="font-size:14px">
+                        </div>
+                        <div class="col-md-2 pt-5">
                             <a href="/product/details/@Model.ProductId" class="btn btn-primary">Comments</a>
                         </div>
-                        <div class="col-md-2">
-                            <hr>
-                            <a href="/product/edit/@Model.ProductId" class="btn btn-success btn-sm">Edit</a>
+                        <div class="col-md-1">
+                            <a href="/product/edit/@Model.ProductId" class="btn btn-success">Edit</a>
+                            
                             <form method="POST" action="/product/delete">
                                 <input type="hidden" name="ProductId" value="@Model.ProductId">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger  mt-2">Delete</button>
                             </form>
                         </div>
                     </div>
