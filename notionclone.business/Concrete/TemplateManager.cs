@@ -17,7 +17,7 @@ namespace notionclone.business.Concrete
         }
         public void Create(Template entity)
         {
-            throw new NotImplementedException();
+            _templateRepository.Create(entity);
         }
 
         public void Delete(Template entity)

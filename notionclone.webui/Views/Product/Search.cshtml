@@ -1,6 +1,5 @@
 @model ProductListViewModel
 
-
 @section Templates{
     @await Component.InvokeAsync("Templates")
 }
@@ -11,18 +10,15 @@
 else{
     @* category seçimine göre farklı layout ekranı getir *@
 
-    <div class="">
+    <div>
 
-            <div class="row" >
-                <ul style="none">
-                    <li>
-                        <a href="/product/create" class="btn btn-primary ">Add New Book</a>
-                    </li>
-                    <li>
-                        <partial name="_search" ></partial>
-                    </li>
-                </ul>
-                
+            <div class="row-expand " style="display:flex;">
+                <div class="col mb-3 pl-0" style="display:inline-block"  >
+                    <a href="/product/createproduct" class="btn btn-primary ">Add New Book</a>
+                </div>
+                <div class="col-md-3 mr-0" style="display:inline-block"  >
+                    <partial name="_search" ></partial>
+                </div>
                 
             </div>
             @foreach (var item in Model.Products){
@@ -37,5 +33,6 @@ else{
 
 @section Scripts{
      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 }

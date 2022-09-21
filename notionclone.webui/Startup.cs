@@ -50,6 +50,12 @@ namespace notionclone.webui
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "home",
+                    pattern: "home/addtemplate/",
+                    defaults: new { controller = "Home", action = "AddTemplate" }
+                );
+
+                endpoints.MapControllerRoute(
                     name: "product",
                     pattern: "product/edit/{id?}",
                     defaults: new { controller = "Product", action = "Edit" }

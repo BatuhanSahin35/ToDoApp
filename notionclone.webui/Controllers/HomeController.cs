@@ -6,16 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using notionclone.business.Abstract;
 using notionclone.data.Abstract;
+using notionclone.entity;
 
 namespace notionclone.webui.Controllers
 {
     public class HomeController:Controller
     {
-        private IProductService _productService;
-        public HomeController(IProductService productService)
+        private ITemplateService _templateService;
+        public HomeController(ITemplateService templateService)
         {
-            this._productService = productService;
+            this._templateService = templateService;
         }
+
         public IActionResult Index(int? id){
 
             //  var products=ProductRepository.Products;
@@ -35,6 +37,19 @@ namespace notionclone.webui.Controllers
             // };
             // return View(productViewModel);
             return View();
+        }
+        [HttpGet]
+        public IActionResult AddTemplate(){
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddTemplate(Template t){
+            var entity = new Template(){
+                Name = t.Name,
+                Description = t.Description
+            };
+            _templateService.Create(entity);
+            return RedirectToAction("Index");
         }
         
     }
