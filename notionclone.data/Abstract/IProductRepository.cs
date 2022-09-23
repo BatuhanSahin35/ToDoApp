@@ -9,5 +9,7 @@ namespace notionclone.data.Abstract
     public interface IProductRepository:IRepository<Product>
     {
         List<Product> GetSearchResult(string searchString);
+        List<Product> GetProductsByCategory(int id);
+        void Create(Product entity,int[] templateIds);
     }
 }

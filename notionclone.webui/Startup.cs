@@ -41,7 +41,7 @@ namespace notionclone.webui
             });
             if (env.IsDevelopment())
             {
-                SeedDatabase.Seed();
+                //SeedDatabase.Seed();
                 app.UseDeveloperExceptionPage();
             }
 
@@ -60,6 +60,13 @@ namespace notionclone.webui
                     pattern: "product/edit/{id?}",
                     defaults: new { controller = "Product", action = "Edit" }
                 );
+
+                endpoints.MapControllerRoute(
+                    name: "product",
+                    pattern: "product/list/{id?}",
+                    defaults: new { controller = "Product", action = "List" }
+                );
+
                 
 
                 endpoints.MapControllerRoute(

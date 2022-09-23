@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,17 @@ namespace notionclone.webui.Controllers
     public class ProductController:Controller
     {
         private IProductService _productService;
-        public ProductController(IProductService productService)
+        private ITemplateService _templateService;
+        public ProductController(IProductService productService,ITemplateService templateService)
         {
             this._productService = productService;
+            this._templateService = templateService;
         }
        
-        public IActionResult List(){
+        public IActionResult List(int id){
             var productViewModel = new ProductListViewModel()
             {
-                Products = _productService.GetAll()
+                Products = _productService.GetProductsByTemplate(id)
             };
 
             return View(productViewModel);
@@ -34,13 +37,14 @@ namespace notionclone.webui.Controllers
             }
             return View(product);
         }
+
         [HttpGet]
         public IActionResult CreateProduct(){
-            
+            ViewBag.Templates = _templateService.GetAll();
             return View();
         }
         [HttpPost]
-        public IActionResult CreateProduct(ProductModel model){
+        public IActionResult CreateProduct(ProductModel model,int[] templateIds){
             var entity = new Product(){
                 Name = model.Name,
                 Author = model.Author,
@@ -48,9 +52,9 @@ namespace notionclone.webui.Controllers
                 ImageUrl = model.ImageUrl
             };
             _productService.Create(entity);
-            return RedirectToAction("List");
+            _productService.Create(entity,templateIds);
+            return RedirectToAction("Index","Home");
         }
-
 
         [HttpGet]
         public IActionResult Edit(int? id){
@@ -103,7 +107,6 @@ namespace notionclone.webui.Controllers
             {
                 Products = _productService.GetSearchResult(q)
             };
-
             return View(productViewModel);
         }
     }

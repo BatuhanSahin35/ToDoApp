@@ -22,6 +22,11 @@ namespace notionclone.business.Concrete
             _productRepository.Create(entity);
         }
 
+        public void Create(Product entity, int[] templateIds)
+        {
+            _productRepository.Create(entity,templateIds);
+        }
+
         public void Delete(Product entity)
         {
             _productRepository.Delete(entity);
@@ -35,6 +40,11 @@ namespace notionclone.business.Concrete
         public Product GetById(int id)
         {
             return _productRepository.GetById(id);
+        }
+
+        public List<Product> GetProductsByTemplate(int id)
+        {
+            return _productRepository.GetProductsByCategory(id);
         }
 
         public List<Product> GetSearchResult(string searchString)

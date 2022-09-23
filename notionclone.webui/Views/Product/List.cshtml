@@ -5,6 +5,15 @@
 }
 
 @if(Model.Products.Count==0){
+    <div class="row-expand " style="display:flex;">
+        <div class="col mb-3 pl-0" style="display:inline-block">
+            <a href="/product/createproduct"  class="btn btn-primary ">Add New Book</a>
+        </div>
+        <div class="col-md-3 mr-0" style="display:inline-block"  >
+            <partial name="_search" ></partial>
+        </div>
+        
+    </div>
     @await Html.PartialAsync("_noproduct")
 }
 else{
@@ -16,10 +25,9 @@ else{
                 <div class="col mb-3 pl-0" style="display:inline-block"  >
                     <a href="/product/createproduct" class="btn btn-primary ">Add New Book</a>
                 </div>
-                <div class="col-md-3 mr-0" style="display:inline-block"  >
+                <div class="col-md-3 mr-0" style="display:inline-block">
                     <partial name="_search" ></partial>
-                </div>
-                
+                </div>              
             </div>
             @foreach (var item in Model.Products){
                 <div class="col-md-12">
