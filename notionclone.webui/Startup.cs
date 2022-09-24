@@ -13,6 +13,10 @@ using notionclone.data.Abstract;
 using notionclone.data.Concrete.EfCore;
 using notionclone.business.Abstract;
 using notionclone.business.Concrete;
+using notionclone.webui.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace notionclone.webui
 {
@@ -22,6 +26,39 @@ namespace notionclone.webui
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationContext>(options=>options.UseSqlServer(@"Server=DESKTOP-87LVU45;Database=NotionDB;Trusted_Connection=true"));
+            services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options=> {
+                                                options.Password.RequireDigit=true;
+                                                options.Password.RequiredLength=6;
+                                                options.Password.RequireLowercase=true;
+                                                options.Password.RequireUppercase=true;
+                                                options.Password.RequireNonAlphanumeric=true;
+
+                                                options.Lockout.MaxFailedAccessAttempts=5;
+                                                options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(1);
+                                                options.Lockout.AllowedForNewUsers=true;
+                                                            // options.User.AllowedUserNameCharacters = "";
+                                                options.User.RequireUniqueEmail=true;
+                                                options.SignIn.RequireConfirmedEmail=false;
+                                                options.SignIn.RequireConfirmedPhoneNumber=false;
+                                                });
+
+            services.ConfigureApplicationCookie(options=> {options.Cookie.Name="NotionClone";
+                                                            options.ExpireTimeSpan=TimeSpan.FromMinutes(30);
+                                                            options.LoginPath="/account/login";
+                                                            options.LogoutPath="/account/logout";
+                                                            options.AccessDeniedPath="/account/accessdenied";
+                                                            options.SlidingExpiration=true;
+                                                            options.Cookie = new CookieBuilder
+                                                            {
+                                                                HttpOnly = true,
+                                                                Name = ".NotionClone.Security.Cookie",
+                                                            };
+            });
+
+
             services.AddScoped<ITemplateRepository, SQLTemplateRepository>();
             services.AddScoped<ITemplateService, TemplateManager>();
             
@@ -44,7 +81,9 @@ namespace notionclone.webui
                 //SeedDatabase.Seed();
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -78,7 +117,7 @@ namespace notionclone.webui
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    pattern: "{controller=Home}/{action=Main}/{id?}"
                     );
             });
         }

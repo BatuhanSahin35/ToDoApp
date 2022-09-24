@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using notionclone.business.Abstract;
@@ -17,7 +18,9 @@ namespace notionclone.webui.Controllers
         {
             this._templateService = templateService;
         }
-
+        public IActionResult Main(){
+            return View();
+        }
         public IActionResult Index(int? id){
 
             //  var products=ProductRepository.Products;
