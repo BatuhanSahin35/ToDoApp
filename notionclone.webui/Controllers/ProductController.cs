@@ -46,15 +46,21 @@ namespace notionclone.webui.Controllers
         }
         [HttpPost]
         public IActionResult CreateProduct(ProductModel model,int[] templateIds){
-            var entity = new Product(){
-                Name = model.Name,
-                Author = model.Author,
-                Evaluation = model.Evaluation,
-                ImageUrl = model.ImageUrl
-            };
-            _productService.Create(entity);
-            _productService.Create(entity,templateIds);
-            return RedirectToAction("Index","Home");
+            
+            if(ModelState.IsValid){
+                var entity = new Product(){
+                    Name = model.Name,
+                    Author = model.Author,
+                    Evaluation = model.Evaluation,
+                    ImageUrl = model.ImageUrl
+                };
+                _productService.Create(entity);
+                _productService.Create(entity,templateIds);
+                return RedirectToAction("Index","Home");
+            }
+            return View(model);
+            
+            
         }
 
         [HttpGet]
@@ -100,7 +106,7 @@ namespace notionclone.webui.Controllers
                 _productService.Delete(entity);
             }
             
-            return RedirectToAction("List");
+            return RedirectToAction("Index","Home");
         }
 
         public IActionResult Search(string q){

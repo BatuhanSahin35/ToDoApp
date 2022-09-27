@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using notionclone.business.Abstract;
 using notionclone.data.Abstract;
 using notionclone.entity;
@@ -47,12 +48,16 @@ namespace notionclone.webui.Controllers
         }
         [HttpPost]
         public IActionResult AddTemplate(Template t){
-            var entity = new Template(){
-                Name = t.Name,
-                Description = t.Description
-            };
-            _templateService.Create(entity);
-            return RedirectToAction("Index");
+            if(ModelState.IsValid){
+                var entity = new Template(){
+                    Name = t.Name,
+                    Description = t.Description
+                };
+            
+                _templateService.Create(entity);
+                return RedirectToAction("Index");
+            }
+            return View(t);
         }
         
     }
